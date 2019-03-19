@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { State, Action } from "../../reducers";
 import App from '../App';
+import LogIn from '../LogIn';
 
 interface StoreParameter {
   store: Store<State, Action>
@@ -17,6 +18,7 @@ const Root = (parameter: StoreParameter) => {
     <Provider store={store}>
       <Router>
         <Route path="/" component={App} />
+        <Route path="/log-in" component={LogIn} />
       </Router>
     </Provider>
   );
