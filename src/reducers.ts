@@ -1,8 +1,8 @@
-interface State {
+export interface State {
 
 }
 
-interface Action {
+export interface Action {
   type: string
 }
 
