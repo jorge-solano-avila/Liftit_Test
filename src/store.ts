@@ -1,7 +1,7 @@
-import { createStore } from "redux";
+import { createStore, Store } from "redux";
 
-import { reducers } from "./reducers";
+import { reducers, State, Action } from "./reducers";
 
-const store = createStore(reducers);
+const store: Store<State, Action> = createStore(reducers);
 
 export default store;
