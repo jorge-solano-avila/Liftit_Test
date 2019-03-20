@@ -1,7 +1,7 @@
-import { createStore, Store } from "redux";
+import { createStore, combineReducers, Store } from "redux";
 
-import { reducers, State, Action } from "./reducers";
+import { rootReducer, Reducers, Action } from "./reducers";
 
-const store: Store<State, Action> = createStore(reducers);
+const store: Store<Reducers, Action> = createStore(rootReducer);
 
 export default store;
