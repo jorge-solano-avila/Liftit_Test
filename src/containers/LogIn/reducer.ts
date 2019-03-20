@@ -1,20 +1,25 @@
-import { LOG_IN } from "./constants";
+import { LOG_IN, SET_AUTHENTICATED } from "./constants";
 
 export interface LogInState {
-  authenticated: boolean
+  authenticated: boolean;
 }
 
 const initialState: LogInState = {
   authenticated: false
 };
 
-const logInReducer = (state: LogInState = initialState, action: any): LogInState => {
+const logInReducer = (
+  state: LogInState = initialState,
+  action: any
+): LogInState => {
   switch (action.type) {
     case LOG_IN:
+      return Object.assign({}, state, { authenticated: true });
+    case SET_AUTHENTICATED:
       return Object.assign({}, state, { authenticated: true });
     default:
       return state;
   }
-}
+};
 
 export default logInReducer;
