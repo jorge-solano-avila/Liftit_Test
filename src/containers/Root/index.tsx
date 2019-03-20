@@ -3,12 +3,12 @@ import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { State, Action } from "../../reducers";
+import { Reducers, Action } from "../../reducers";
 import App from '../App';
 import LogIn from '../LogIn';
 
 interface StoreParameter {
-  store: Store<State, Action>
+  store: Store<Reducers, Action>
 }
 
 const Root = (parameter: StoreParameter) => {
