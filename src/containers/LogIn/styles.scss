@@ -1,7 +1,30 @@
+$section-height: 300px;
+
 body {
   margin: 0;
 }
 
 .log-in {
-  min-height: 100vh;
+  height: 100vh;
+  background-color: whitesmoke;
+
+  &__section {
+    position: absolute;
+	  left: 0;
+	  right: 0;
+	  top: 0;
+	  bottom: 0;
+    margin: auto;
+    width: 2 * $section-height;
+    height: $section-height;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    &__form {
+      position: relative;
+      margin: auto;
+      top: 10%;
+    }
+  }
 }
