@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store } from "redux";
+import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Root = (parameter: StoreParameter) => {
   return (
     <Provider store={store}>
       <Router>
-        <Route path="/" component={App} />
+        <Route exact path="/" component={App} />
         <Route path="/log-in" component={LogIn} />
       </Router>
     </Provider>
