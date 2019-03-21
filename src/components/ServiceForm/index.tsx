@@ -49,17 +49,20 @@ const renderField = (field: RenderField): JSX.Element => {
 
   return (
     <div>
-      <label>{label}</label>
+      <label className="service-form__label">{label}</label>
+      <br />
       <div>
         {type ? (
-          <input {...input} placeholder={label} type={type} />
+          <input className="service-form__input" {...input} type={type} />
         ) : (
-          <textarea {...input} placeholder={label} />
-        )}
+          <textarea rows={5} className="service-form__textarea" {...input} />
+        )}<br />
         {touched &&
-          ((error && <span>{error}</span>) ||
+          ((error && <span className="service-form__error">{error}</span>) ||
             (warning && <span>{warning}</span>))}
       </div>
+      <br />
+      <br />
     </div>
   );
 };
@@ -83,7 +86,7 @@ let ServiceForm = (props: any) => {
         label="Dirección de destino"
       />
       <div>
-        <button type="submit">Crear</button>
+        <button className="service-form__button" type="submit">Crear</button>
       </div>
     </form>
   );
