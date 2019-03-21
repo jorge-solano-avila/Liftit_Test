@@ -1,4 +1,4 @@
-import { LOG_IN, SET_AUTHENTICATED } from "./constants";
+import { LOG_IN, SET_NOT_AUTHENTICATED } from "./constants";
 import { Credentials } from "./index";
 
 export const logIn = (credentials: Credentials) => {
@@ -8,8 +8,8 @@ export const logIn = (credentials: Credentials) => {
   }
 }
 
-export const setAuthenticated = () => {
+export const setNotAuthenticated = () => {
   return {
-    type: SET_AUTHENTICATED
+    type: SET_NOT_AUTHENTICATED
   }
 }

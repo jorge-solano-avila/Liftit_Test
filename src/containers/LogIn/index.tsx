@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import "./styles.scss";
-import { logIn, setAuthenticated } from "./actions";
+import { logIn, setNotAuthenticated } from "./actions";
 import LogInForm from "../../components/LogInForm";
 import { getLocalItem, saveLocalItem } from "../../utils/storage";
 
@@ -18,8 +18,9 @@ export interface Session {
 
 interface LogInProps {
   authenticated: boolean;
-  onLogIn(credentials: Credentials): void;
   history: any;
+  onLogIn(credentials: Credentials): void;
+  onSetNotAuthenticated(): void;
 }
 
 class LogIn extends Component<LogInProps, {}> {
@@ -30,19 +31,22 @@ class LogIn extends Component<LogInProps, {}> {
   }
 
   componentDidMount() {
-    const { authenticated, history } = this.props;
+    const { history, onSetNotAuthenticated } = this.props;
     const session: Session = getLocalItem("session");
-
-    if (authenticated || session) {
-      history.replace("/");
+    
+    if (session) {
+      history.push("/");
+    } else {
+      onSetNotAuthenticated();
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: any) {
+    const { authenticated: prevAuthenticated } = prevProps;
     const { authenticated, history } = this.props;
 
-    if (authenticated) {
-      history.replace("/");
+    if (prevAuthenticated !== authenticated && authenticated) {
+      history.push("/");
     }
   }
 
@@ -65,7 +69,7 @@ class LogIn extends Component<LogInProps, {}> {
     return (
       <div className="log-in">
         <div className="log-in__section">
-          <h2>Iniciar sesión</h2>
+          <h2 className="log-in__section__title">Iniciar sesión</h2>
           <div className="log-in__section__form">
             <LogInForm onSubmit={this.submit} />
           </div>
@@ -81,7 +85,7 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   onLogIn: (credentials: Credentials) => dispatch(logIn(credentials)),
-  onSetAuthenticated: () => dispatch(setAuthenticated()),
+  onSetNotAuthenticated: () => dispatch(setNotAuthenticated()),
   dispatch
 });
 
