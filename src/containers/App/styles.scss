@@ -6,4 +6,14 @@ body {
 
 .app {
   min-height: 100vh;
+
+  &__content {
+    margin: auto;
+    width: 800px;
+    text-align: center;
+
+    &__map {
+      height: 400px;
+    }
+  }
 }
