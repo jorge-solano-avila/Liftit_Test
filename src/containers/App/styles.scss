@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+* {
+  font-family: CircularStd, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .app {
   min-height: 100vh;
 
@@ -11,6 +15,35 @@ body {
     margin: auto;
     width: 800px;
     text-align: center;
+
+    &__title {
+      color: $primary-color;
+    }
+
+    &__button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      height: 40px;
+      padding: 10px;
+      background-color: $secondary-color;
+      border: 0 solid black;
+      border-radius: 3px;
+      color: $primary-color;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    &__created {
+      color: green;
+      font-weight: bold;
+    }
+
+    &__subtitle {
+      color: $primary-color;
+      font-weight: bold;
+    }
 
     &__map {
       height: 400px;

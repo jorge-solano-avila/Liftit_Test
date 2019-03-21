@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Geocode from "react-geocode";
 
 import "./styles.scss";
@@ -12,7 +13,7 @@ import {
 import { Session } from "../LogIn";
 import ServiceForm from "../../components/ServiceForm";
 import MapWrapper from "../../components/MapWrapper";
-import { getLocalItem } from "../../utils/storage";
+import { getLocalItem, removeItem } from "../../utils/storage";
 
 export interface Distance {
   distance: string;
@@ -37,6 +38,7 @@ class App extends Component<AppProps, {}> {
 
     this.submit = this.submit.bind(this);
     this.handleDistance = this.handleDistance.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +81,12 @@ class App extends Component<AppProps, {}> {
     onSetDistance(distance);
   }
 
+  handleLogOut(): void {
+    const { history } = this.props;
+
+    removeItem("session");
+  }
+
   renderMap(): JSX.Element | null {
     const { sourceLocation, destinationLocation } = this.props;
 
@@ -96,12 +104,12 @@ class App extends Component<AppProps, {}> {
   render() {
     const { serviceCreated, distance } = this.props;
     const serviceCreatedJSX: JSX.Element | null = serviceCreated ? (
-      <span>Servicio creado exitosamente</span>
+      <span className="app__content__created">¡Servicio creado exitosamente!</span>
     ) : null;
     const distanceJSX: JSX.Element | null = distance ? (
       <div>
-        <p><b>Distancia: </b>{distance.distance}</p>
-        <p><b>Duración: </b>{distance.duration}</p>
+        <p><span className="app__content__subtitle">Distancia: </span>{distance.distance}</p>
+        <p><span className="app__content__subtitle">Duración: </span>{distance.duration}</p>
       </div>
     ) : null;
     const mapJSX: JSX.Element | null = this.renderMap();
@@ -109,8 +117,14 @@ class App extends Component<AppProps, {}> {
     return (
       <div className="app">
         <div className="app__content">
-          <h2>Creación de servicio</h2>
+          <h2 className="app__content__title">Creación de servicio</h2>
+          <button className="app__content__button" onClick={this.handleLogOut}>
+            <Link to="/log-in">
+              Cerrar sesión
+            </Link>
+          </button>
           <ServiceForm onSubmit={this.submit} />
+          <br />
           {serviceCreatedJSX}
           {distanceJSX}
           {mapJSX}
