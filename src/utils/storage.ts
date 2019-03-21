@@ -9,3 +9,7 @@ export const saveLocalItem = (key: string, data: any): void => {
 
   localStorage.setItem(key, item);
 }
+
+export const removeItem = (key: string): void => {
+  localStorage.removeItem(key);
+}
