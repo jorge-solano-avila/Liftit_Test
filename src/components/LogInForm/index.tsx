@@ -47,13 +47,16 @@ const renderField = (field: RenderField): JSX.Element => {
 
   return (
     <div>
-      <label>{label}</label>
+      <label className="log-in-form__label">{label}</label>
+      <br />
       <div>
-        <input {...input} placeholder={label} type={type} />
+        <input className="log-in-form__input" {...input} type={type} /><br />
         {touched &&
-          ((error && <span>{error}</span>) ||
+          ((error && <span className="log-in-form__error">{error}</span>) ||
             (warning && <span>{warning}</span>))}
       </div>
+      <br />
+      <br />
     </div>
   );
 };
@@ -62,7 +65,7 @@ let LogInForm = (props: any) => {
   const { handleSubmit } = props;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="log-in-form" onSubmit={handleSubmit}>
       <Field
         name="email"
         component={renderField}
@@ -76,7 +79,7 @@ let LogInForm = (props: any) => {
         label="Contraseña"
       />
       <div>
-        <button type="submit">Ingresar</button>
+        <button className="log-in-form__button" type="submit">Ingresar</button>
       </div>
     </form>
   );
